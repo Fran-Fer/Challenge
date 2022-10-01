@@ -17,6 +17,9 @@
 		36ADB4E728E8C99F00E01C97 /* MainDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E628E8C99F00E01C97 /* MainDataManager.swift */; };
 		36ADB4EA28E8D36100E01C97 /* RecipesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E928E8D36100E01C97 /* RecipesCell.swift */; };
 		36ADB4EC28E8D3F300E01C97 /* RecipesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36ADB4EB28E8D3F300E01C97 /* RecipesCell.xib */; };
+		36ADB4F828E8DD1700E01C97 /* DetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4F728E8DD1700E01C97 /* DetailProtocols.swift */; };
+		36ADB4FB28E8DE5600E01C97 /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4FA28E8DE5600E01C97 /* DetailBuilder.swift */; };
+		36ADB4FD28E8DE8D00E01C97 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4FC28E8DE8D00E01C97 /* DetailView.swift */; };
 		36EE890528E8C126005E98FF /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890428E8C126005E98FF /* Networking.swift */; };
 		36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890E28E8C213005E98FF /* MainProtocols.swift */; };
 		36EE891128E8C247005E98FF /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891028E8C247005E98FF /* MainEntity.swift */; };
@@ -59,6 +62,9 @@
 		36ADB4E628E8C99F00E01C97 /* MainDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataManager.swift; sourceTree = "<group>"; };
 		36ADB4E928E8D36100E01C97 /* RecipesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCell.swift; sourceTree = "<group>"; };
 		36ADB4EB28E8D3F300E01C97 /* RecipesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipesCell.xib; sourceTree = "<group>"; };
+		36ADB4F728E8DD1700E01C97 /* DetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProtocols.swift; sourceTree = "<group>"; };
+		36ADB4FA28E8DE5600E01C97 /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
+		36ADB4FC28E8DE8D00E01C97 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		36EE890428E8C126005E98FF /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		36EE890E28E8C213005E98FF /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		36EE891028E8C247005E98FF /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
@@ -148,6 +154,80 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		36ADB4ED28E8DC8100E01C97 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				36ADB4F928E8DE4D00E01C97 /* Builder */,
+				36ADB4F428E8DCB200E01C97 /* Protocols */,
+				36ADB4F328E8DCAD00E01C97 /* View */,
+				36ADB4F228E8DCA800E01C97 /* Interactor */,
+				36ADB4F128E8DCA300E01C97 /* Presenter */,
+				36ADB4F028E8DC9D00E01C97 /* Entity */,
+				36ADB4EF28E8DC9200E01C97 /* Router */,
+				36ADB4EE28E8DC8A00E01C97 /* DataManager */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		36ADB4EE28E8DC8A00E01C97 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		36ADB4EF28E8DC9200E01C97 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		36ADB4F028E8DC9D00E01C97 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		36ADB4F128E8DCA300E01C97 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		36ADB4F228E8DCA800E01C97 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		36ADB4F328E8DCAD00E01C97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36ADB4FC28E8DE8D00E01C97 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36ADB4F428E8DCB200E01C97 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				36ADB4F728E8DD1700E01C97 /* DetailProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		36ADB4F928E8DE4D00E01C97 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				36ADB4FA28E8DE5600E01C97 /* DetailBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		36EE890128E8C0CF005E98FF /* Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +242,7 @@
 		36EE890228E8C0D5005E98FF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				36ADB4ED28E8DC8100E01C97 /* DetailModule */,
 				36EE890628E8C1BB005E98FF /* MainModule */,
 				36EE890328E8C119005E98FF /* Networking */,
 			);
@@ -389,12 +470,15 @@
 				11AE5EA6262882280057729B /* AppDelegate.swift in Sources */,
 				36ADB4E328E8C8FB00E01C97 /* MainInteractor.swift in Sources */,
 				36EE891428E8C482005E98FF /* MainBuilder.swift in Sources */,
+				36ADB4FD28E8DE8D00E01C97 /* DetailView.swift in Sources */,
 				36EE891828E8C640005E98FF /* MainPresenter.swift in Sources */,
+				36ADB4F828E8DD1700E01C97 /* DetailProtocols.swift in Sources */,
 				36ADB4E728E8C99F00E01C97 /* MainDataManager.swift in Sources */,
 				36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */,
 				36EE890528E8C126005E98FF /* Networking.swift in Sources */,
 				36EE891128E8C247005E98FF /* MainEntity.swift in Sources */,
 				36ADB4E528E8C92700E01C97 /* MainRouter.swift in Sources */,
+				36ADB4FB28E8DE5600E01C97 /* DetailBuilder.swift in Sources */,
 				36ADB4EA28E8D36100E01C97 /* RecipesCell.swift in Sources */,
 				36EE891628E8C4E3005E98FF /* MainViewController.swift in Sources */,
 			);
