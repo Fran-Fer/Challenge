@@ -15,6 +15,9 @@
 		11AE5EB22628822D0057729B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11AE5EB02628822D0057729B /* LaunchScreen.storyboard */; };
 		11AE5EBD2628822D0057729B /* UalaTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE5EBC2628822D0057729B /* UalaTestTests.swift */; };
 		11AE5EC82628822E0057729B /* UalaTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE5EC72628822E0057729B /* UalaTestUITests.swift */; };
+		36ADB4E328E8C8FB00E01C97 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E228E8C8FB00E01C97 /* MainInteractor.swift */; };
+		36ADB4E528E8C92700E01C97 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E428E8C92700E01C97 /* MainRouter.swift */; };
+		36ADB4E728E8C99F00E01C97 /* MainDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E628E8C99F00E01C97 /* MainDataManager.swift */; };
 		36EE890528E8C126005E98FF /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890428E8C126005E98FF /* Networking.swift */; };
 		36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890E28E8C213005E98FF /* MainProtocols.swift */; };
 		36EE891128E8C247005E98FF /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891028E8C247005E98FF /* MainEntity.swift */; };
@@ -55,6 +58,9 @@
 		11AE5EC32628822E0057729B /* UalaTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UalaTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11AE5EC72628822E0057729B /* UalaTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UalaTestUITests.swift; sourceTree = "<group>"; };
 		11AE5EC92628822E0057729B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36ADB4E228E8C8FB00E01C97 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		36ADB4E428E8C92700E01C97 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		36ADB4E628E8C99F00E01C97 /* MainDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataManager.swift; sourceTree = "<group>"; };
 		36EE890428E8C126005E98FF /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		36EE890E28E8C213005E98FF /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		36EE891028E8C247005E98FF /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
@@ -200,6 +206,7 @@
 		36EE890928E8C1E1005E98FF /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				36ADB4E228E8C8FB00E01C97 /* MainInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 		36EE890C28E8C1F1005E98FF /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				36ADB4E428E8C92700E01C97 /* MainRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -230,6 +238,7 @@
 		36EE890D28E8C1F7005E98FF /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				36ADB4E628E8C99F00E01C97 /* MainDataManager.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -375,11 +384,14 @@
 				11AE5EAA262882280057729B /* ViewController.swift in Sources */,
 				11AE5EA6262882280057729B /* AppDelegate.swift in Sources */,
 				11AE5EA8262882280057729B /* SceneDelegate.swift in Sources */,
+				36ADB4E328E8C8FB00E01C97 /* MainInteractor.swift in Sources */,
 				36EE891428E8C482005E98FF /* MainBuilder.swift in Sources */,
 				36EE891828E8C640005E98FF /* MainPresenter.swift in Sources */,
+				36ADB4E728E8C99F00E01C97 /* MainDataManager.swift in Sources */,
 				36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */,
 				36EE890528E8C126005E98FF /* Networking.swift in Sources */,
 				36EE891128E8C247005E98FF /* MainEntity.swift in Sources */,
+				36ADB4E528E8C92700E01C97 /* MainRouter.swift in Sources */,
 				36EE891628E8C4E3005E98FF /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

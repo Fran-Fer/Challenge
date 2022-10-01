@@ -8,4 +8,4 @@
 import Foundation
 
 // MARK: - Recipe
-struct Recipe {}
+struct Recipe: Codable {}
