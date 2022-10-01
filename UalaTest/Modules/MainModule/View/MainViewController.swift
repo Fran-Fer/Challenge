@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 // MARK: Main View Controller
-class MainViewController: MainViewProtocol {
+class MainViewController: UIViewController {
   var presenter: MainPresenterProtocol?
-  
+}
+
+extension MainViewController: MainViewProtocol {
   func updateView(withData: Recipe) {
   }
-  
   func displayError() {
   }
-  
 }
