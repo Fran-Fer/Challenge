@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: Detail View class
-class DetailViewController {}
+class DetailViewController: UIViewController {
+  var presenter: DetailPresenterProtocol?
+}
+
+extension DetailViewController: DetailViewProtocol {
+  func updateUI() {}
+}
