@@ -10,7 +10,6 @@
 		11AE5EA6262882280057729B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE5EA5262882280057729B /* AppDelegate.swift */; };
 		11AE5EAF2628822D0057729B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11AE5EAE2628822D0057729B /* Assets.xcassets */; };
 		11AE5EB22628822D0057729B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11AE5EB02628822D0057729B /* LaunchScreen.storyboard */; };
-		11AE5EBD2628822D0057729B /* UalaTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE5EBC2628822D0057729B /* UalaTestTests.swift */; };
 		11AE5EC82628822E0057729B /* UalaTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE5EC72628822E0057729B /* UalaTestUITests.swift */; };
 		36ADB4E328E8C8FB00E01C97 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E228E8C8FB00E01C97 /* MainInteractor.swift */; };
 		36ADB4E528E8C92700E01C97 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4E428E8C92700E01C97 /* MainRouter.swift */; };
@@ -23,6 +22,11 @@
 		36ADB4FF28E8E7BB00E01C97 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB4FE28E8E7BB00E01C97 /* DetailInteractor.swift */; };
 		36ADB50128E8E7DA00E01C97 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50028E8E7DA00E01C97 /* DetailPresenter.swift */; };
 		36ADB50328E8E81200E01C97 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50228E8E81200E01C97 /* DetailRouter.swift */; };
+		36ADB50928E8F40400E01C97 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50828E8F40400E01C97 /* MockRouter.swift */; };
+		36ADB50B28E8F59100E01C97 /* MockMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50A28E8F59100E01C97 /* MockMainPresenter.swift */; };
+		36ADB50D28E8F5D900E01C97 /* MainPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50C28E8F5D900E01C97 /* MainPresenterTest.swift */; };
+		36ADB50F28E8F64F00E01C97 /* MockMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB50E28E8F64F00E01C97 /* MockMainView.swift */; };
+		36ADB51128E8F6A300E01C97 /* MockMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADB51028E8F6A300E01C97 /* MockMainInteractor.swift */; };
 		36EE890528E8C126005E98FF /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890428E8C126005E98FF /* Networking.swift */; };
 		36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890E28E8C213005E98FF /* MainProtocols.swift */; };
 		36EE891128E8C247005E98FF /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891028E8C247005E98FF /* MainEntity.swift */; };
@@ -55,7 +59,6 @@
 		11AE5EB12628822D0057729B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11AE5EB32628822D0057729B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11AE5EB82628822D0057729B /* UalaTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UalaTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		11AE5EBC2628822D0057729B /* UalaTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UalaTestTests.swift; sourceTree = "<group>"; };
 		11AE5EBE2628822D0057729B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11AE5EC32628822E0057729B /* UalaTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UalaTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11AE5EC72628822E0057729B /* UalaTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UalaTestUITests.swift; sourceTree = "<group>"; };
@@ -71,6 +74,11 @@
 		36ADB4FE28E8E7BB00E01C97 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		36ADB50028E8E7DA00E01C97 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		36ADB50228E8E81200E01C97 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		36ADB50828E8F40400E01C97 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
+		36ADB50A28E8F59100E01C97 /* MockMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainPresenter.swift; sourceTree = "<group>"; };
+		36ADB50C28E8F5D900E01C97 /* MainPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTest.swift; sourceTree = "<group>"; };
+		36ADB50E28E8F64F00E01C97 /* MockMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainView.swift; sourceTree = "<group>"; };
+		36ADB51028E8F6A300E01C97 /* MockMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainInteractor.swift; sourceTree = "<group>"; };
 		36EE890428E8C126005E98FF /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		36EE890E28E8C213005E98FF /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		36EE891028E8C247005E98FF /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
@@ -136,8 +144,9 @@
 		11AE5EBB2628822D0057729B /* UalaTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				11AE5EBC2628822D0057729B /* UalaTestTests.swift */,
+				36ADB50428E8F3DC00E01C97 /* MockClasses */,
 				11AE5EBE2628822D0057729B /* Info.plist */,
+				36ADB50A28E8F59100E01C97 /* MockMainPresenter.swift */,
 			);
 			path = UalaTestTests;
 			sourceTree = "<group>";
@@ -219,6 +228,17 @@
 				36ADB4FA28E8DE5600E01C97 /* DetailBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		36ADB50428E8F3DC00E01C97 /* MockClasses */ = {
+			isa = PBXGroup;
+			children = (
+				36ADB50828E8F40400E01C97 /* MockRouter.swift */,
+				36ADB50E28E8F64F00E01C97 /* MockMainView.swift */,
+				36ADB50C28E8F5D900E01C97 /* MainPresenterTest.swift */,
+				36ADB51028E8F6A300E01C97 /* MockMainInteractor.swift */,
+			);
+			path = MockClasses;
 			sourceTree = "<group>";
 		};
 		36EE890128E8C0CF005E98FF /* Code */ = {
@@ -484,7 +504,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11AE5EBD2628822D0057729B /* UalaTestTests.swift in Sources */,
+				36ADB50928E8F40400E01C97 /* MockRouter.swift in Sources */,
+				36ADB50D28E8F5D900E01C97 /* MainPresenterTest.swift in Sources */,
+				36ADB51128E8F6A300E01C97 /* MockMainInteractor.swift in Sources */,
+				36ADB50B28E8F59100E01C97 /* MockMainPresenter.swift in Sources */,
+				36ADB50F28E8F64F00E01C97 /* MockMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@ class DetailPresenter: DetailPresenterProtocol {
   weak var view: DetailViewProtocol?
   
   func fetchRecipe() -> RecipiesList {
-    guard let recipe: RecipiesList = self.interactor?.RecipeData else { return }
+    guard let recipe: RecipiesList = self.interactor?.RecipeData else { return RecipiesList() }
     return recipe
   }
 }
