@@ -18,6 +18,8 @@
 		36EE890528E8C126005E98FF /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890428E8C126005E98FF /* Networking.swift */; };
 		36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE890E28E8C213005E98FF /* MainProtocols.swift */; };
 		36EE891128E8C247005E98FF /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891028E8C247005E98FF /* MainEntity.swift */; };
+		36EE891428E8C482005E98FF /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891328E8C482005E98FF /* MainBuilder.swift */; };
+		36EE891628E8C4E3005E98FF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891528E8C4E3005E98FF /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		36EE890428E8C126005E98FF /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		36EE890E28E8C213005E98FF /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		36EE891028E8C247005E98FF /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
+		36EE891328E8C482005E98FF /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		36EE891528E8C4E3005E98FF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 		36EE890628E8C1BB005E98FF /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				36EE891228E8C479005E98FF /* Builder */,
 				36EE890728E8C1D5005E98FF /* Protocols */,
 				36EE890828E8C1DD005E98FF /* View */,
 				36EE890928E8C1E1005E98FF /* Interactor */,
@@ -185,6 +190,7 @@
 		36EE890828E8C1DD005E98FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				36EE891528E8C4E3005E98FF /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +229,14 @@
 			children = (
 			);
 			path = DataManager;
+			sourceTree = "<group>";
+		};
+		36EE891228E8C479005E98FF /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				36EE891328E8C482005E98FF /* MainBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,9 +372,11 @@
 				11AE5EAA262882280057729B /* ViewController.swift in Sources */,
 				11AE5EA6262882280057729B /* AppDelegate.swift in Sources */,
 				11AE5EA8262882280057729B /* SceneDelegate.swift in Sources */,
+				36EE891428E8C482005E98FF /* MainBuilder.swift in Sources */,
 				36EE890F28E8C213005E98FF /* MainProtocols.swift in Sources */,
 				36EE890528E8C126005E98FF /* Networking.swift in Sources */,
 				36EE891128E8C247005E98FF /* MainEntity.swift in Sources */,
+				36EE891628E8C4E3005E98FF /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

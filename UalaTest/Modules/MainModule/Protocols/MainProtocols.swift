@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Main Data Manager Protocol
 protocol MainDataManagerProtocol: AnyObject {
   var network: NetworkingProtocol { get set }
-  func fetchCVData(_ completion: @escaping (Result<Recipe, Error>) -> Void)
+  func fetchRecipeData(_ completion: @escaping (Result<Recipe, Error>) -> Void)
 }
 
 // MARK: - Main View Protocol
@@ -34,7 +34,7 @@ protocol MainPresenterProtocol: AnyObject {
   var router: MainRouterProtocol? { get set }
   var view: MainViewProtocol? { get set }
   func fetchParsedData()
-  func didFetchCVData(with result: Recipe)
+  func didFetchRecipeData(with result: Recipe)
   func failedToFetchData()
   func sendTo(with data: Recipe, identifier: String)
 }
@@ -44,4 +44,9 @@ protocol MainRouterProtocol: AnyObject {
   func presentDishDetail(view: MainViewProtocol, data: Recipe)
   func parseError(view: MainViewProtocol)
   func presentMainModule(in window: UIWindow)
+}
+
+// MARK: - Main Builder Protocol
+protocol MainBuilderProtocol: AnyObject {
+  func build(router: MainRouterProtocol) -> MainViewController
 }
