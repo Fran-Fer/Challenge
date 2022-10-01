@@ -9,5 +9,6 @@ import Foundation
 
 // MARK: Detail Interactor
 class DetailInteractor: DetailInteractorProtocol {
-  var presenter: DetailPresenterProtocol?
+  weak var presenter: DetailPresenterProtocol?
+  var RecipeData: RecipiesList?
 }

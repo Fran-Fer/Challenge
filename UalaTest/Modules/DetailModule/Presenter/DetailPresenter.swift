@@ -9,7 +9,13 @@ import Foundation
 
 // MARK: Detail Presenter
 class DetailPresenter: DetailPresenterProtocol {
+  // MARK: - Detail Presenter Properties
   var interactor: DetailInteractorProtocol?
   var router: DetailRouterProtocol?
-  var view: DetailViewProtocol?
+  weak var view: DetailViewProtocol?
+  
+  func fetchRecipe() -> RecipiesList {
+    guard let recipe: RecipiesList = self.interactor?.RecipeData else { return }
+    return recipe
+  }
 }

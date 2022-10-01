@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
   // MARK: - Detail Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    recipe = presenter?.fetchRecipe()
   }
   
   // MARK: - Private methods

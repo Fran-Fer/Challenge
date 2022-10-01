@@ -21,7 +21,7 @@ class MainRouter: MainRouterProtocol {
   }
   
   func presentDishDetail(view: UINavigationController, data: RecipiesList) {
-    DetailRouter().present(navigationController: view)
+    DetailRouter().present(navigationController: view, data: data)
   }
   
   func parseError(view: MainViewProtocol) {

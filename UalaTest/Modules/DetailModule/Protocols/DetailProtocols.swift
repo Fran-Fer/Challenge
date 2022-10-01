@@ -17,6 +17,7 @@ protocol DetailViewProtocol: UIViewController {
 // MARK: Detail Interactor Protocol
 protocol DetailInteractorProtocol: AnyObject {
   var presenter: DetailPresenterProtocol? { get set }
+  var RecipeData: RecipiesList? { get set }
 }
 
 // MARK: Detail Presenter Protocol
@@ -24,11 +25,12 @@ protocol DetailPresenterProtocol: AnyObject {
   var interactor: DetailInteractorProtocol? { get set }
   var router: DetailRouterProtocol? { get set }
   var view: DetailViewProtocol? { get set }
+  func fetchRecipe() -> RecipiesList
 }
 
 // MARK: Detail Router Protocol
 protocol DetailRouterProtocol: AnyObject {
-  func present(navigationController: UINavigationController)
+  func present(navigationController: UINavigationController, data: RecipiesList)
 }
 
 // MARK: Detail Builder Protocol
