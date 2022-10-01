@@ -20,9 +20,11 @@ class MainRouter: MainRouterProtocol {
     window.rootViewController = navigationController
   }
   
-  func presentDishDetail(view: MainViewProtocol, data: Recipe) {
+  func presentDishDetail(view: UINavigationController, data: RecipiesList) {
+    DetailRouter().present(navigationController: view)
   }
   
   func parseError(view: MainViewProtocol) {
+    // TODO: parsing error
   }
 }

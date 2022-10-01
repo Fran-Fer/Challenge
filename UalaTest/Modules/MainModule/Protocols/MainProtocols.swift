@@ -36,12 +36,12 @@ protocol MainPresenterProtocol: AnyObject {
   func fetchParsedData()
   func didFetchRecipeData(with result: Recipe)
   func failedToFetchData()
-  func sendToDishDetail(with data: Recipe)
+  func sendToDishDetail(with data: RecipiesList, view: UINavigationController)
 }
 
 // MARK: - Main Router Protocol
 protocol MainRouterProtocol: AnyObject {
-  func presentDishDetail(view: MainViewProtocol, data: Recipe)
+  func presentDishDetail(view: UINavigationController, data: RecipiesList)
   func parseError(view: MainViewProtocol)
   func presentMainModule(in window: UIWindow)
 }

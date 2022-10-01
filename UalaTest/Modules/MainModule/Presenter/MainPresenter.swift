@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: Main Presenter
 class MainPresenter: MainPresenterProtocol {
@@ -30,8 +31,7 @@ class MainPresenter: MainPresenterProtocol {
     }
   }
   
-  func sendToDishDetail(with data: Recipe) {
-    guard let view = view else { return }
+  func sendToDishDetail(with data: RecipiesList, view: UINavigationController) {
     router?.presentDishDetail(view: view, data: data)
   }
 }

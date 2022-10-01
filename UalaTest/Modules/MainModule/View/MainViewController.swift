@@ -97,6 +97,7 @@ extension MainViewController: MainViewProtocol {
   }
 }
 
+// MARK: - Table view delegate
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 10 // TODO: add number of rows according to entity model
@@ -110,8 +111,17 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 110
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard
+      let filteredRecipe: RecipiesList = self.filteredData?.recipiesList?[indexPath.row],
+      let navigationController: UINavigationController = self.navigationController
+    else { return }
+    presenter?.sendToDishDetail(with: filteredRecipe, view: navigationController)
+  }
 }
 
+// MARK: - Search bar delegate
 extension MainViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     guard var filteredData: Recipe = self.filteredData else { return }
