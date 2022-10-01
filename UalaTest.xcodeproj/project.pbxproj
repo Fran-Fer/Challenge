@@ -138,13 +138,13 @@
 		36EE890128E8C0CF005E98FF /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				11AE5EB32628822D0057729B /* Info.plist */,
 				11AE5EA5262882280057729B /* AppDelegate.swift */,
 				11AE5EA7262882280057729B /* SceneDelegate.swift */,
 				11AE5EA9262882280057729B /* ViewController.swift */,
 				11AE5EAB262882280057729B /* Main.storyboard */,
 				11AE5EAE2628822D0057729B /* Assets.xcassets */,
 				11AE5EB02628822D0057729B /* LaunchScreen.storyboard */,
-				11AE5EB32628822D0057729B /* Info.plist */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -557,7 +557,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = UalaTest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UalaTest/Code/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -576,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = UalaTest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UalaTest/Code/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

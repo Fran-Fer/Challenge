@@ -19,11 +19,19 @@ class MainPresenter: MainPresenterProtocol {
   }
   
   func didFetchRecipeData(with result: Recipe) {
+    view?.updateView(withData: result)
   }
   
   func failedToFetchData() {
+    if let view = view {
+      router?.parseError(view: view)
+    } else {
+      preconditionFailure("View could not be assigned")
+    }
   }
   
-  func sendTo(with data: Recipe, identifier: String) {
+  func sendToDishDetail(with data: Recipe) {
+    guard let view = view else { return }
+    router?.presentDishDetail(view: view, data: data)
   }
 }

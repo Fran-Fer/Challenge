@@ -36,7 +36,7 @@ protocol MainPresenterProtocol: AnyObject {
   func fetchParsedData()
   func didFetchRecipeData(with result: Recipe)
   func failedToFetchData()
-  func sendTo(with data: Recipe, identifier: String)
+  func sendToDishDetail(with data: Recipe)
 }
 
 // MARK: - Main Router Protocol
