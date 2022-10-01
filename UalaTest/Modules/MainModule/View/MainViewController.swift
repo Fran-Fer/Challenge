@@ -12,8 +12,10 @@ import UIKit
 class MainViewController: UIViewController {
   // MARK: - Main View Properties
   private var loadedData: Recipe?
+  private var filteredData: Recipe?
   var presenter: MainPresenterProtocol?
   var recipesTableView: UITableView = UITableView()
+  let searchBar: UISearchBar = UISearchBar()
   
   // MARK: - Main View Life Cycle
   override func viewDidLoad() {
@@ -31,18 +33,19 @@ class MainViewController: UIViewController {
   
   // MARK: - Main View Private Properties
   private func setUpNavigationBar() {
+    searchBar.sizeToFit()
+    searchBar.delegate = self
     view.backgroundColor = .white
     
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "My Recipes"
     navigationController?.view.backgroundColor = .systemBlue
-    navigationController?.navigationBar.barTintColor = .systemBlue
-
+    navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.barStyle = .black
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchBar))
     navigationItem.rightBarButtonItem?.tintColor = .white
+    showSearchBar(shouldShow: true)
   }
   
   private func setUpTableView() {
@@ -50,14 +53,38 @@ class MainViewController: UIViewController {
     recipesTableView.register(RecipesCell.self, forCellReuseIdentifier: "RecipesCell")
     recipesTableView.frame = view.bounds
   }
+  
+  private func search(shouldShow: Bool) {
+    showSearchBar(shouldShow: !shouldShow)
+    searchBar.showsCancelButton = shouldShow
+    navigationItem.titleView = shouldShow ? searchBar : nil
+  }
+  
+  private func showSearchBar(shouldShow: Bool) {
+    if shouldShow {
+      navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                          target: self,
+                                                          action: #selector(handleShowSearchBar))
+    } else {
+      navigationItem.rightBarButtonItem = nil
+    }
+  }
 
   // MARK: - Search bar function
-  @objc private func handleSearchBar() {}
+  @objc func handleShowSearchBar() {
+    searchBar.becomeFirstResponder()
+    search(shouldShow: true)
+  }
+
 }
 
 extension MainViewController: MainViewProtocol {
   // MARK: - Main View Protocol Methods
   func updateView(withData: Recipe) {
+    DispatchQueue.main.async {
+      self.loadedData?.recipiesList = withData.recipiesList
+      self.recipesTableView.reloadData()
+    }
   }
 
   func displayError() {
@@ -85,3 +112,19 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   }
 }
 
+extension MainViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    guard var filteredData: Recipe = self.filteredData else { return }
+  
+    for word in loadedData?.recipiesList ?? [] {
+      if (word.name?.contains(searchText.uppercased()) ?? false) && searchText.count >= 4 {
+        filteredData.recipiesList?.append(word)
+      }
+    }
+    updateView(withData: filteredData)
+  }
+  
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    search(shouldShow: false)
+  }
+}
