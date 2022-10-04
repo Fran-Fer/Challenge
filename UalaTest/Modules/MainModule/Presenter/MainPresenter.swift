@@ -14,12 +14,14 @@ class MainPresenter: MainPresenterProtocol {
   var interactor: MainInteractorProtocol?
   var router: MainRouterProtocol?
   var view: MainViewProtocol?
+  private let mealList: [Meal] = []
   
   // MARK: - Main Presenter Methods
   func fetchParsedData() {
+    interactor?.getData()
   }
   
-  func didFetchRecipeData(with result: Recipe) {
+  func didFetchRecipeData(with result: MealList) {
     view?.updateView(withData: result)
   }
   
@@ -31,7 +33,7 @@ class MainPresenter: MainPresenterProtocol {
     }
   }
   
-  func sendToDishDetail(with data: RecipiesList, view: UINavigationController) {
-    router?.presentDishDetail(view: view, data: data)
+  func sendToDishDetail(with id: String, view: UINavigationController) {
+    router?.presentDishDetail(view: view, id: id)
   }
 }

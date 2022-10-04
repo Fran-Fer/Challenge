@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: Detail Router
 class DetailRouter: DetailRouterProtocol {
-  func present(navigationController: UINavigationController, data: RecipiesList) {
+  func present(navigationController: UINavigationController, data: Meal) {
     navigationController.pushViewController(DetailBuilder().build(router: self, data: data), animated: true)
   }
 }

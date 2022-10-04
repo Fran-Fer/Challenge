@@ -16,9 +16,7 @@ class MainInteractor: MainInteractorProtocol {
   // MARK: - Main Interactor Methods
   func getData() {
     apiDataManager?.fetchRecipeData() { [weak self] data in
-      guard let self = self else {
-        return
-      }
+      guard let self = self else { return }
       
       switch data {
       case .success(let result):

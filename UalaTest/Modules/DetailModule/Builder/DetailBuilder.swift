@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: Detail Builder
 class DetailBuilder {
-  func build(router: DetailRouter, data: RecipiesList) -> DetailViewController {
+  func build(router: DetailRouter, data: Meal) -> DetailViewController {
     let view: DetailViewController = DetailViewController()
     let interactor: DetailInteractorProtocol = DetailInteractor()
     let presenter: DetailPresenterProtocol = DetailPresenter()

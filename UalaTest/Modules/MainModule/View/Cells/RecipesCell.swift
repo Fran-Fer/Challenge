@@ -13,13 +13,14 @@ class RecipesCell: UITableViewCell {
   let recipeImage: UIImageView = UIImageView()
   let recipeLabel: UILabel = UILabel()
   
+  var display: Meal?
+  
   // MARK: - Cell life Cycle
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     addSubview(recipeLabel)
     addSubview(recipeImage)
     activateConstraints()
-    setUpCell()
   }
   
   required init?(coder: NSCoder) {
@@ -41,14 +42,23 @@ class RecipesCell: UITableViewCell {
     recipeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
   }
   
-  private func setUpCell() {
-    // TODO: initialize labels and images with model content
-    recipeLabel.numberOfLines = 0
-    recipeLabel.adjustsFontSizeToFitWidth = true
-    recipeLabel.text = ""
-    
-    recipeImage.layer.cornerRadius = 10
-    recipeImage.clipsToBounds = true
-    recipeImage.image = UIImage(systemName: "")
+  func setUpCell() {
+      self.recipeLabel.numberOfLines = 0
+      self.recipeLabel.adjustsFontSizeToFitWidth = true
+      self.recipeLabel.text = self.display?.strMeal ?? ""
+      
+      self.recipeImage.layer.cornerRadius = 10
+      self.recipeImage.clipsToBounds = true
+      guard let imageUrl: URL = self.display?.strMealThumb else { return }
+      self.getImage(url: imageUrl)
+  }
+  
+  private func getImage(url: URL) {
+      do {
+        let data = try Data(contentsOf: url)
+        self.recipeImage.image = UIImage(data: data)
+      } catch let err {
+        preconditionFailure(err.localizedDescription)
+      }
   }
 }

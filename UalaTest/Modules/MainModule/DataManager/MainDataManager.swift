@@ -17,7 +17,7 @@ final class MainDataManagerClass: MainDataManagerProtocol {
   }
   
   // MARK: - Data Manager Method
-  func fetchRecipeData(_ completion: @escaping (Result<Recipe, Error>) -> Void) {
+  func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void) {
     network.execute(Endpoint.resume, completion: completion)
   }
 }

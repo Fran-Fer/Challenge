@@ -15,7 +15,7 @@ class MockMainView: UIViewController {
 }
 
 extension MockMainView: MainViewProtocol {
-  func updateView(withData: Recipe) {
+  func updateView(withData: Meals) {
   }
   
   func displayError() {

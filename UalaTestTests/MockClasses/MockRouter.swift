@@ -15,7 +15,7 @@ class MockMainRouter: MainRouterProtocol {
   var dishDetailPresented: Bool = false
   var parseErrorPresented: Bool = false
   
-  func presentDishDetail(view: UINavigationController, data: RecipiesList) {
+  func presentDishDetail(view: UINavigationController, data: Meal) {
     dishDetailPresented = true
   }
   

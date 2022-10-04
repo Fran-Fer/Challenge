@@ -11,13 +11,13 @@ import UIKit
 // MARK: - Main Data Manager Protocol
 protocol MainDataManagerProtocol: AnyObject {
   var network: NetworkingProtocol { get set }
-  func fetchRecipeData(_ completion: @escaping (Result<Recipe, Error>) -> Void)
+  func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void)
 }
 
 // MARK: - Main View Protocol
 protocol MainViewProtocol: UIViewController {
   var presenter: MainPresenterProtocol? { get set }
-  func updateView(withData: Recipe)
+  func updateView(withData: MealList)
   func displayError()
 }
 
@@ -34,14 +34,14 @@ protocol MainPresenterProtocol: AnyObject {
   var router: MainRouterProtocol? { get set }
   var view: MainViewProtocol? { get set }
   func fetchParsedData()
-  func didFetchRecipeData(with result: Recipe)
+  func didFetchRecipeData(with result: MealList)
   func failedToFetchData()
-  func sendToDishDetail(with data: RecipiesList, view: UINavigationController)
+  func sendToDishDetail(with id: String, view: UINavigationController)
 }
 
 // MARK: - Main Router Protocol
 protocol MainRouterProtocol: AnyObject {
-  func presentDishDetail(view: UINavigationController, data: RecipiesList)
+  func presentDishDetail(view: UINavigationController, id: String)
   func parseError(view: MainViewProtocol)
   func presentMainModule(in window: UIWindow)
 }

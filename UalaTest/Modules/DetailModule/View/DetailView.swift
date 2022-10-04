@@ -11,7 +11,7 @@ import UIKit
 // MARK: Detail View class
 class DetailViewController: UIViewController {
   var presenter: DetailPresenterProtocol?
-  var recipe: RecipiesList?
+  var recipe: Meal?
   let recipeImage: UIImageView = UIImageView()
   let recipeName: UILabel = UILabel()
   let recipeIngridients: UILabel = UILabel()
@@ -52,9 +52,6 @@ class DetailViewController: UIViewController {
   }
   
   private func setUpLabels() {
-    recipeName.text = recipe?.name
-    recipeDescription.text = recipe?.description
-    recipeIngridients.text = recipe?.ingridients?.joined(separator: ",")
   }
 }
 

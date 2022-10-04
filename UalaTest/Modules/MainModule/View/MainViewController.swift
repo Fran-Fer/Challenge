@@ -11,8 +11,7 @@ import UIKit
 // MARK: Main View Controller
 class MainViewController: UIViewController {
   // MARK: - Main View Properties
-  private var loadedData: Recipe?
-  private var filteredData: Recipe?
+  private var loadedData: MealList?
   var presenter: MainPresenterProtocol?
   var recipesTableView: UITableView = UITableView()
   let searchBar: UISearchBar = UISearchBar()
@@ -24,7 +23,6 @@ class MainViewController: UIViewController {
     setUpSearchBar()
     setUpNavigationBar()
     setUpTableView()
-
   }
   
   // MARK: - Main View Private Properties
@@ -35,7 +33,7 @@ class MainViewController: UIViewController {
     searchBar.searchTextField.backgroundColor = .white
     showSearchBar(shouldShow: true)
   }
-
+  
   private func setUpNavigationBar() {
     view.backgroundColor = .white
     
@@ -88,9 +86,9 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainViewProtocol {
   // MARK: - Main View Protocol Methods
-  func updateView(withData: Recipe) {
+  func updateView(withData: MealList) {
+    self.loadedData = withData
     DispatchQueue.main.async {
-      self.loadedData?.recipiesList = withData.recipiesList
       self.recipesTableView.reloadData()
     }
   }
@@ -108,40 +106,40 @@ extension MainViewController: MainViewProtocol {
 // MARK: - Table view delegate
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10 // TODO: add number of rows according to entity model
+    return loadedData?.meals?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell", for:  indexPath) as! RecipesCell
+    cell.display = loadedData?.meals?[indexPath.row]
+    cell.setUpCell()
     return cell
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard
-      let filteredRecipe: RecipiesList = self.filteredData?.recipiesList?[indexPath.row],
+      let filteredRecipe: MealList = self.loadedData,
       let navigationController: UINavigationController = self.navigationController
     else { return }
-    presenter?.sendToDishDetail(with: filteredRecipe, view: navigationController)
+    presenter?.sendToDishDetail(with: filteredRecipe.meals?[indexPath.row].idMeal ?? "0", view: navigationController)
   }
 }
 
 // MARK: - Search bar delegate
 extension MainViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    guard var filteredData: Recipe = self.filteredData else { return }
-  
-    for word in loadedData?.recipiesList ?? [] {
-      if (word.name?.contains(searchText.uppercased()) ?? false) && searchText.count >= 4 {
-        filteredData.recipiesList?.append(word)
-      }
+    guard var loadedData: MealList = self.loadedData else { return }
+    
+    if searchText != "" {
+      let filteredMeals: [Meal] = loadedData.meals?.filter( { $0.strMeal?.lowercased().contains(searchText.lowercased()) ?? false } ) ?? []
+      loadedData.meals = filteredMeals.sorted { $0.strMeal ?? "" > $1.strMeal ?? "" }
+      updateView(withData: loadedData)
     }
-    updateView(withData: filteredData)
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    //guard let loadedData: Recipe = self.loadedData else { return }
     searchBar.searchTextField.text = ""
     search(shouldShow: false)
-    //updateView(withData: loadedData)
+    presenter?.fetchParsedData()
   }
 }
