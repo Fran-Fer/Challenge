@@ -37,7 +37,7 @@ extension Endpoint: RequestProviding {
   var urlRequest: URLRequest {
     switch self {
     case .resume:
-      guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s={string}") else {
+      guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s=") else {
         preconditionFailure("URL not found")
       }
       return URLRequest(url: url)

@@ -21,35 +21,43 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter?.fetchParsedData()
+    setUpSearchBar()
     setUpNavigationBar()
-    recipesTableView.delegate = self
-    recipesTableView.dataSource = self
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
     setUpTableView()
+
   }
   
   // MARK: - Main View Private Properties
-  private func setUpNavigationBar() {
+  private func setUpSearchBar() {
     searchBar.sizeToFit()
     searchBar.delegate = self
+    
+    searchBar.searchTextField.backgroundColor = .white
+    showSearchBar(shouldShow: true)
+  }
+
+  private func setUpNavigationBar() {
     view.backgroundColor = .white
     
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "My Recipes"
     navigationController?.view.backgroundColor = .systemBlue
-    navigationController?.navigationBar.tintColor = .white
+    navigationController?.view.tintColor = .white
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+    navigationController?.navigationBar.barTintColor = .systemBlue
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.barStyle = .black
     
     navigationItem.rightBarButtonItem?.tintColor = .white
-    showSearchBar(shouldShow: true)
   }
   
   private func setUpTableView() {
     view.addSubview(recipesTableView)
+    
+    recipesTableView.delegate = self
+    recipesTableView.dataSource = self
+    recipesTableView.rowHeight = 110
+        
     recipesTableView.register(RecipesCell.self, forCellReuseIdentifier: "RecipesCell")
     recipesTableView.frame = view.bounds
   }
@@ -107,11 +115,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell", for:  indexPath) as! RecipesCell
     return cell
   }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 110
-  }
-  
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard
       let filteredRecipe: RecipiesList = self.filteredData?.recipiesList?[indexPath.row],
@@ -135,6 +139,9 @@ extension MainViewController: UISearchBarDelegate {
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    //guard let loadedData: Recipe = self.loadedData else { return }
+    searchBar.searchTextField.text = ""
     search(shouldShow: false)
+    //updateView(withData: loadedData)
   }
 }
