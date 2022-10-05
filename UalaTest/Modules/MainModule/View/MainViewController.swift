@@ -192,10 +192,12 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard
-      let filteredRecipe: MealList = self.loadedData,
+      let filteredRecipe: Meal = loadedData?.meals?[indexPath.row],
+      let filteredRecipeUrl: URL = filteredRecipe.strMealThumb,
+      let filteredImage: Data = presenter?.returnThumbImage(url: filteredRecipeUrl),
       let navigationController: UINavigationController = self.navigationController
     else { return }
-    presenter?.sendToDishDetail(with: filteredRecipe.meals?[indexPath.row].idMeal ?? "0", view: navigationController)
+    presenter?.sendToDishDetail(with: filteredRecipe, imageData: filteredImage, view: navigationController)
   }
 }
 

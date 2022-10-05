@@ -60,7 +60,7 @@ class MainPresenter: MainPresenterProtocol {
     }
   }
   
-  func sendToDishDetail(with id: String, view: UINavigationController) {
-    router?.presentDishDetail(view: view, id: id)
+  func sendToDishDetail(with meal: Meal, imageData: Data, view: UINavigationController) {
+    router?.presentDishDetail(view: view, meal: meal, imageData: imageData)
   }
 }

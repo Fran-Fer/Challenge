@@ -14,8 +14,13 @@ class DetailPresenter: DetailPresenterProtocol {
   var router: DetailRouterProtocol?
   weak var view: DetailViewProtocol?
   
-  func fetchRecipe() -> Meal {
-    guard let recipe: Meal = self.interactor?.RecipeData else { return Meal() }
-    return recipe
+  func fetchRecipe() {
+    guard let recipe: Meal = self.interactor?.recipeData else { return }
+    view?.updateRecipe(with: recipe)
+  }
+  
+  func fetchImageData() {
+    guard let recipeImage: Data = self.interactor?.recipeImage else { return }
+    view?.updateImage(with: recipeImage)
   }
 }

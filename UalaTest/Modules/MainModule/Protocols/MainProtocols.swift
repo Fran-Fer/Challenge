@@ -42,7 +42,7 @@ protocol MainPresenterProtocol: AnyObject {
   func fetchParsedData()
   func didFetchRecipeData(with result: MealList)
   func failedToFetchData()
-  func sendToDishDetail(with id: String, view: UINavigationController)
+  func sendToDishDetail(with meal: Meal, imageData: Data, view: UINavigationController)
   func fetchThumbImage(url: URL)
   func didFetchThumbImage(url: URL, data: Data, isRandom: Bool)
   func returnThumbImage(url: URL) -> Data?
@@ -52,7 +52,7 @@ protocol MainPresenterProtocol: AnyObject {
 
 // MARK: - Main Router Protocol
 protocol MainRouterProtocol: AnyObject {
-  func presentDishDetail(view: UINavigationController, id: String)
+  func presentDishDetail(view: UINavigationController, meal: Meal, imageData: Data)
   func parseError(view: MainViewProtocol)
   func presentMainModule(in window: UIWindow)
 }
