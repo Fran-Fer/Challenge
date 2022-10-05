@@ -12,17 +12,21 @@ import UIKit
 class MainViewController: UIViewController {
   // MARK: - Main View Properties
   private var loadedData: MealList?
+  private var bannerImage: UIImage?
   var presenter: MainPresenterProtocol?
   var recipesTableView: UITableView = UITableView()
   let searchBar: UISearchBar = UISearchBar()
+  let banner: UIImageView = UIImageView()
   
   // MARK: - Main View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter?.fetchParsedData()
+    presenter?.fetchRandom()
     setUpSearchBar()
     setUpNavigationBar()
     setUpTableView()
+    setUpBannerView()
   }
   
   // MARK: - Main View Private Properties
@@ -49,6 +53,19 @@ class MainViewController: UIViewController {
     navigationItem.rightBarButtonItem?.tintColor = .white
   }
   
+  private func setUpBannerView() {
+    view.addSubview(banner)
+    
+    banner.translatesAutoresizingMaskIntoConstraints = false
+    banner.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    banner.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    banner.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    banner.topAnchor.constraint(equalTo: recipesTableView.bottomAnchor).isActive = true
+    banner.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+    
+    banner.image = bannerImage
+  }
+  
   private func setUpTableView() {
     view.addSubview(recipesTableView)
     
@@ -57,7 +74,14 @@ class MainViewController: UIViewController {
     recipesTableView.rowHeight = 110
         
     recipesTableView.register(RecipesCell.self, forCellReuseIdentifier: "RecipesCell")
-    recipesTableView.frame = view.bounds
+    
+    recipesTableView.translatesAutoresizingMaskIntoConstraints = false
+    recipesTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    recipesTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    recipesTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    recipesTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    recipesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
+    recipesTableView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
   }
   
   private func search(shouldShow: Bool) {
@@ -95,6 +119,10 @@ extension MainViewController: MainViewProtocol {
     reloadTableView()
   }
   
+  func updateBanner(data: Data) {
+    bannerImage = UIImage(data: data)
+  }
+  
   func reloadTableView() {
     DispatchQueue.main.async {
       self.recipesTableView.reloadData()
@@ -125,7 +153,6 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
       let cellImageUrl: URL = cellData.strMealThumb
     else { return cell }
     
-    //presenter?.fetchThumbImage(url: cellImageUrl)
     cell.display = cellData
     cell.displayImageData = presenter?.returnThumbImage(url: cellImageUrl)
     cell.setUpCell()

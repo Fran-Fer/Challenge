@@ -11,14 +11,15 @@ import UIKit
 // MARK: - Main Data Manager Protocol
 protocol MainDataManagerProtocol: AnyObject {
   var network: NetworkingProtocol { get set }
-  func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void)
-  func fetchThumbImage(url: URL, completion: @escaping (Data?, Error?) -> Void)
+  func fetchRecipeData(isRandom: Bool, completion: @escaping (Result<MealList, Error>) -> Void)
+  func fetchImage(url: URL, completion: @escaping (Data?, Error?) -> Void)
 }
 
 // MARK: - Main View Protocol
 protocol MainViewProtocol: UIViewController {
   var presenter: MainPresenterProtocol? { get set }
   func updateView(withData: MealList)
+  func updateBanner(data: Data)
   func reloadTableView() 
   func displayError()
 }
@@ -29,6 +30,7 @@ protocol MainInteractorProtocol: AnyObject {
   var apiDataManager: MainDataManagerProtocol? { get set }
   func getData()
   func getThumbImage(url: URL)
+  func getRandomRecipe()
 }
 
 // MARK: - Main Presenter Protocol
@@ -43,6 +45,8 @@ protocol MainPresenterProtocol: AnyObject {
   func fetchThumbImage(url: URL)
   func didFetchThumbImage(url: URL, data: Data)
   func returnThumbImage(url: URL) -> Data?
+  func didFetchRandomImage(url: URL)
+  func fetchRandom()
 }
 
 // MARK: - Main Router Protocol

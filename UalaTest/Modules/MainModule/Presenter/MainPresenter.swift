@@ -27,6 +27,10 @@ class MainPresenter: MainPresenterProtocol {
     }
   }
   
+  func fetchRandom() {
+    interactor?.getRandomRecipe()
+  }
+
   func didFetchThumbImage(url: URL, data: Data) {
     imageDictionary[url] = data
     view?.reloadTableView()
@@ -38,6 +42,11 @@ class MainPresenter: MainPresenterProtocol {
   
   func didFetchRecipeData(with result: MealList) {
     view?.updateView(withData: result)
+  }
+  
+  func didFetchRandomImage(url: URL) {
+    guard let bannerImageData: Data = imageDictionary[url] else { return }
+    view?.updateBanner(data: bannerImageData)
   }
   
   func failedToFetchData() {

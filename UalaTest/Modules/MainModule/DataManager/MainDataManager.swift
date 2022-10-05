@@ -18,11 +18,12 @@ final class MainDataManagerClass: MainDataManagerProtocol {
   }
   
   // MARK: - Data Manager Method
-  func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void) {
-    network.execute(Endpoint.resume.urlRequest, isForImage: false, completion: completion)
+  func fetchRecipeData(isRandom: Bool, completion: @escaping (Result<MealList, Error>) -> Void) {
+    let endpoint = isRandom ? Endpoint.random : Endpoint.resume
+    network.execute(endpoint.urlRequest, completion: completion)
   }
   
-  func fetchThumbImage(url: URL, completion: @escaping (Data?, Error?) -> Void) {
+  func fetchImage(url: URL, completion: @escaping (Data?, Error?) -> Void) {
     network.decodeImage(url: url, completion: completion)
   }
 }
@@ -35,6 +36,7 @@ class Networking: NetworkingProtocol {
 // MARK: - Endpoint
 enum Endpoint {
   case resume
+  case random
 }
 
 // MARK: - Endpoint definitions
@@ -43,6 +45,11 @@ extension Endpoint: RequestProviding {
     switch self {
     case .resume:
       guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s=") else {
+        preconditionFailure("URL not found")
+      }
+      return URLRequest(url: url)
+    case .random:
+      guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php") else {
         preconditionFailure("URL not found")
       }
       return URLRequest(url: url)

@@ -10,12 +10,12 @@ import Foundation
 // MARK: - Networking Protocol
 protocol NetworkingProtocol {
   var session: URLSession { get set }
-  func execute<T: Decodable>(_ urlRequest: URLRequest, isForImage: Bool, completion: @escaping (Result<T, Error>) -> Void)
+  func execute<T: Decodable>(_ urlRequest: URLRequest, completion: @escaping (Result<T, Error>) -> Void)
   func decodeImage(url: URL, completion: @escaping (Data?, Error?) -> (Void))
 }
 
 extension NetworkingProtocol {
-  func execute<T: Decodable>(_ urlRequest: URLRequest, isForImage: Bool, completion: @escaping (Result<T, Error>) -> Void ) {
+  func execute<T: Decodable>(_ urlRequest: URLRequest, completion: @escaping (Result<T, Error>) -> Void ) {
     
     session.dataTask(with: urlRequest) { data, _, error in
       do {
