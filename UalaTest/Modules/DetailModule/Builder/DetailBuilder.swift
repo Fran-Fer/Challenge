@@ -15,6 +15,7 @@ class DetailBuilder {
     let presenter: DetailPresenterProtocol = DetailPresenter()
     
     interactor.recipeData = meal
+    interactor.recipeImage = imageData
     interactor.presenter = presenter
     presenter.interactor = interactor
     presenter.view = view
