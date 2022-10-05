@@ -24,6 +24,9 @@ class MainBuilder: MainBuilderProtocol {
     interactor.presenter = presenter
     interactor.apiDataManager = dataManager
 
+    //view.presenter?.fetchRandom()
+    //view.presenter?.fetchParsedData()
+    
     return view
   }
 }

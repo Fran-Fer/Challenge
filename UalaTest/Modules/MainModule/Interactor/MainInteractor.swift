@@ -12,6 +12,7 @@ class MainInteractor: MainInteractorProtocol {
   // MARK: - Main Interactor Variables
   weak var presenter: MainPresenterProtocol?
   var apiDataManager: MainDataManagerProtocol?
+  var dispatchGroup: DispatchGroup = DispatchGroup()
   
   // MARK: - Main Interactor Methods
   func getData() {
@@ -28,10 +29,10 @@ class MainInteractor: MainInteractorProtocol {
     }
   }
   
-  func getThumbImage(url: URL) {
+  func getThumbImage(url: URL, isRandom: Bool) {
     apiDataManager?.fetchImage(url: url, completion: { data, error in
       if let data = data {
-        self.presenter?.didFetchThumbImage(url: url, data: data)
+        self.presenter?.didFetchThumbImage(url: url, data: data, isRandom: isRandom)
       } else {
         self.presenter?.failedToFetchData()
       }
@@ -45,8 +46,11 @@ class MainInteractor: MainInteractorProtocol {
       switch data {
       case .success(let result):
         guard let resultUrl: URL = result.meals?[0].strMealThumb else { return }
-        self.getThumbImage(url: resultUrl)
-        self.presenter?.didFetchRandomImage(url: resultUrl)
+        self.dispatchGroup.enter()
+        self.getThumbImage(url: resultUrl, isRandom: true)
+        self.dispatchGroup.notify(queue: .main) {
+          self.presenter?.didFetchRandomImage(url: resultUrl)
+        }
       case .failure:
         self.presenter?.failedToFetchData()
         break

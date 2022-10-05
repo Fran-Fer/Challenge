@@ -17,19 +17,43 @@ class MainViewController: UIViewController {
   var recipesTableView: UITableView = UITableView()
   let searchBar: UISearchBar = UISearchBar()
   let banner: UIImageView = UIImageView()
+  let activiyIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
   
   // MARK: - Main View Life Cycle
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setUpActivityIndicator()
+    presenter?.fetchRandom()
+    presenter?.fetchParsedData()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    presenter?.fetchParsedData()
-    presenter?.fetchRandom()
     setUpSearchBar()
     setUpNavigationBar()
     setUpTableView()
     setUpBannerView()
   }
-  
+
   // MARK: - Main View Private Properties
+  private func setUpActivityIndicator() {
+    view.addSubview(activiyIndicator)
+    recipesTableView.isHidden = true
+    banner.isHidden = true
+    
+    activiyIndicator.isOpaque = true
+    activiyIndicator.startAnimating()
+    activiyIndicator.backgroundColor = .systemBlue
+    activiyIndicator.layer.cornerRadius = 10
+    activiyIndicator.hidesWhenStopped = true
+    activiyIndicator.color = .white
+    activiyIndicator.style = .large
+    
+    activiyIndicator.translatesAutoresizingMaskIntoConstraints = false
+    activiyIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50).isActive = true
+    activiyIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+  }
+  
   private func setUpSearchBar() {
     searchBar.sizeToFit()
     searchBar.delegate = self
@@ -57,13 +81,11 @@ class MainViewController: UIViewController {
     view.addSubview(banner)
     
     banner.translatesAutoresizingMaskIntoConstraints = false
-    banner.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    banner.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
     banner.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
     banner.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-    banner.topAnchor.constraint(equalTo: recipesTableView.bottomAnchor).isActive = true
+    banner.topAnchor.constraint(equalTo: recipesTableView.bottomAnchor, constant: 10).isActive = true
     banner.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-    
-    banner.image = bannerImage
   }
   
   private func setUpTableView() {
@@ -121,6 +143,14 @@ extension MainViewController: MainViewProtocol {
   
   func updateBanner(data: Data) {
     bannerImage = UIImage(data: data)
+    banner.contentMode = .scaleAspectFit
+    banner.image = bannerImage
+    DispatchQueue.main.async {
+      self.activiyIndicator.stopAnimating()
+      self.activiyIndicator.removeFromSuperview()
+      self.recipesTableView.isHidden = false
+      self.banner.isHidden = false
+    }
   }
   
   func reloadTableView() {

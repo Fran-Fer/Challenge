@@ -23,7 +23,7 @@ class MainPresenter: MainPresenterProtocol {
   
   func fetchThumbImage(url: URL) {
     if imageDictionary[url] == nil {
-      interactor?.getThumbImage(url: url)
+      interactor?.getThumbImage(url: url, isRandom: false)
     }
   }
   
@@ -31,7 +31,10 @@ class MainPresenter: MainPresenterProtocol {
     interactor?.getRandomRecipe()
   }
 
-  func didFetchThumbImage(url: URL, data: Data) {
+  func didFetchThumbImage(url: URL, data: Data, isRandom: Bool) {
+    if isRandom {
+      interactor?.dispatchGroup.leave()
+    }
     imageDictionary[url] = data
     view?.reloadTableView()
   }

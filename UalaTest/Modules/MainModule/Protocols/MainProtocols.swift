@@ -28,8 +28,9 @@ protocol MainViewProtocol: UIViewController {
 protocol MainInteractorProtocol: AnyObject {
   var presenter: MainPresenterProtocol? { get set }
   var apiDataManager: MainDataManagerProtocol? { get set }
+  var dispatchGroup: DispatchGroup { get set }
   func getData()
-  func getThumbImage(url: URL)
+  func getThumbImage(url: URL, isRandom: Bool)
   func getRandomRecipe()
 }
 
@@ -43,7 +44,7 @@ protocol MainPresenterProtocol: AnyObject {
   func failedToFetchData()
   func sendToDishDetail(with id: String, view: UINavigationController)
   func fetchThumbImage(url: URL)
-  func didFetchThumbImage(url: URL, data: Data)
+  func didFetchThumbImage(url: URL, data: Data, isRandom: Bool)
   func returnThumbImage(url: URL) -> Data?
   func didFetchRandomImage(url: URL)
   func fetchRandom()
