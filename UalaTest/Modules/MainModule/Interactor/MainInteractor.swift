@@ -27,4 +27,15 @@ class MainInteractor: MainInteractorProtocol {
       }
     }
   }
+  
+  func getThumbImage(url: URL) {
+    apiDataManager?.fetchThumbImage(url: url, completion: { data, error in
+      if let data = data {
+        self.presenter?.didFetchThumbImage(url: url, data: data)
+      } else {
+        self.presenter?.failedToFetchData()
+      }
+    })
+
+  }
 }

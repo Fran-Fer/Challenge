@@ -13,12 +13,27 @@ class MainPresenter: MainPresenterProtocol {
   // MARK: - Main Presenter Properties
   var interactor: MainInteractorProtocol?
   var router: MainRouterProtocol?
-  var view: MainViewProtocol?
-  private let mealList: [Meal] = []
+  weak var view: MainViewProtocol?
+  private var imageDictionary: [URL : Data] = [:]
   
   // MARK: - Main Presenter Methods
   func fetchParsedData() {
     interactor?.getData()
+  }
+  
+  func fetchThumbImage(url: URL) {
+    if imageDictionary[url] == nil {
+      interactor?.getThumbImage(url: url)
+    }
+  }
+  
+  func didFetchThumbImage(url: URL, data: Data) {
+    imageDictionary[url] = data
+    view?.reloadTableView()
+  }
+  
+  func returnThumbImage(url: URL) -> Data? {
+    return imageDictionary[url]
   }
   
   func didFetchRecipeData(with result: MealList) {

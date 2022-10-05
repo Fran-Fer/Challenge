@@ -87,7 +87,15 @@ class MainViewController: UIViewController {
 extension MainViewController: MainViewProtocol {
   // MARK: - Main View Protocol Methods
   func updateView(withData: MealList) {
-    self.loadedData = withData
+    loadedData = withData
+    for meal in loadedData?.meals ?? [] {
+      guard let mealUrl: URL = meal.strMealThumb else { return }
+      presenter?.fetchThumbImage(url: mealUrl)
+    }
+    reloadTableView()
+  }
+  
+  func reloadTableView() {
     DispatchQueue.main.async {
       self.recipesTableView.reloadData()
     }
@@ -111,8 +119,17 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesCell", for:  indexPath) as! RecipesCell
-    cell.display = loadedData?.meals?[indexPath.row]
+    
+    guard
+      let cellData: Meal = loadedData?.meals?[indexPath.row],
+      let cellImageUrl: URL = cellData.strMealThumb
+    else { return cell }
+    
+    //presenter?.fetchThumbImage(url: cellImageUrl)
+    cell.display = cellData
+    cell.displayImageData = presenter?.returnThumbImage(url: cellImageUrl)
     cell.setUpCell()
+    
     return cell
   }
 

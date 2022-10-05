@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: Main Data Manager Class
 final class MainDataManagerClass: MainDataManagerProtocol {
@@ -18,7 +19,11 @@ final class MainDataManagerClass: MainDataManagerProtocol {
   
   // MARK: - Data Manager Method
   func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void) {
-    network.execute(Endpoint.resume, completion: completion)
+    network.execute(Endpoint.resume.urlRequest, isForImage: false, completion: completion)
+  }
+  
+  func fetchThumbImage(url: URL, completion: @escaping (Data?, Error?) -> Void) {
+    network.decodeImage(url: url, completion: completion)
   }
 }
 

@@ -12,12 +12,14 @@ import UIKit
 protocol MainDataManagerProtocol: AnyObject {
   var network: NetworkingProtocol { get set }
   func fetchRecipeData(_ completion: @escaping (Result<MealList, Error>) -> Void)
+  func fetchThumbImage(url: URL, completion: @escaping (Data?, Error?) -> Void)
 }
 
 // MARK: - Main View Protocol
 protocol MainViewProtocol: UIViewController {
   var presenter: MainPresenterProtocol? { get set }
   func updateView(withData: MealList)
+  func reloadTableView() 
   func displayError()
 }
 
@@ -26,6 +28,7 @@ protocol MainInteractorProtocol: AnyObject {
   var presenter: MainPresenterProtocol? { get set }
   var apiDataManager: MainDataManagerProtocol? { get set }
   func getData()
+  func getThumbImage(url: URL)
 }
 
 // MARK: - Main Presenter Protocol
@@ -37,6 +40,9 @@ protocol MainPresenterProtocol: AnyObject {
   func didFetchRecipeData(with result: MealList)
   func failedToFetchData()
   func sendToDishDetail(with id: String, view: UINavigationController)
+  func fetchThumbImage(url: URL)
+  func didFetchThumbImage(url: URL, data: Data)
+  func returnThumbImage(url: URL) -> Data?
 }
 
 // MARK: - Main Router Protocol

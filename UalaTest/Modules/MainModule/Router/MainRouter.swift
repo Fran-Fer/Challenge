@@ -25,6 +25,8 @@ class MainRouter: MainRouterProtocol {
   }
   
   func parseError(view: MainViewProtocol) {
-    view.displayError()
+    DispatchQueue.main.async {
+      view.displayError()
+    }
   }
 }

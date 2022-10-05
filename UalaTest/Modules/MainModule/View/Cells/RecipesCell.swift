@@ -14,6 +14,7 @@ class RecipesCell: UITableViewCell {
   let recipeLabel: UILabel = UILabel()
   
   var display: Meal?
+  var displayImageData: Data?
   
   // MARK: - Cell life Cycle
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,22 +44,13 @@ class RecipesCell: UITableViewCell {
   }
   
   func setUpCell() {
-      self.recipeLabel.numberOfLines = 0
-      self.recipeLabel.adjustsFontSizeToFitWidth = true
-      self.recipeLabel.text = self.display?.strMeal ?? ""
-      
-      self.recipeImage.layer.cornerRadius = 10
-      self.recipeImage.clipsToBounds = true
-      guard let imageUrl: URL = self.display?.strMealThumb else { return }
-      self.getImage(url: imageUrl)
-  }
-  
-  private func getImage(url: URL) {
-      do {
-        let data = try Data(contentsOf: url)
-        self.recipeImage.image = UIImage(data: data)
-      } catch let err {
-        preconditionFailure(err.localizedDescription)
-      }
+    recipeLabel.numberOfLines = 0
+    recipeLabel.adjustsFontSizeToFitWidth = true
+    recipeLabel.text = display?.strMeal ?? ""
+    
+    recipeImage.layer.cornerRadius = 10
+    recipeImage.clipsToBounds = true
+    guard let displayImageData = self.displayImageData else { return }
+    recipeImage.image = UIImage(data: displayImageData)
   }
 }
