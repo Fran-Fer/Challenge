@@ -6,3 +6,7 @@
 //
 
 import Foundation
+import UIKit
+
+// MARK: Recipe Ingridients Custom Cell
+class IngridientsCell: UITableViewCell {}

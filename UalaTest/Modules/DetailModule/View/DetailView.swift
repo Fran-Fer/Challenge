@@ -56,10 +56,20 @@ class DetailViewController: UIViewController {
   }
   
   private func setUpTableView() {
+    view.addSubview(recipeDetailTable)
     
-  }
-  
-  private func activateConstraints() {
+    recipeDetailTable.delegate = self
+    recipeDetailTable.dataSource = self
+    recipeDetailTable.register(DescriptionCell.self, forCellReuseIdentifier: "DescriptionCell")
+
+    recipeDetailTable.translatesAutoresizingMaskIntoConstraints = false
+    recipeDetailTable.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    recipeDetailTable.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    recipeDetailTable.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    recipeDetailTable.topAnchor.constraint(equalTo: view.topAnchor, constant: 230).isActive = true
+    recipeDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    recipeDetailTable.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+    recipeDetailTable.rowHeight = UITableView.automaticDimension
   }
 }
 
@@ -69,6 +79,7 @@ extension DetailViewController: DetailViewProtocol {
     DispatchQueue.main.async {
       self.recipe = recipe
       self.navigationItem.title = recipe.strMeal ?? ""
+      self.recipeDetailTable.reloadData()
     }
   }
   
@@ -76,6 +87,28 @@ extension DetailViewController: DetailViewProtocol {
     DispatchQueue.main.async {
       self.recipeImage = image
       self.recipeImageView.image = UIImage(data: image)
+      self.recipeDetailTable.reloadData()
+    }
+  }
+}
+
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cellData: Meal = recipe else { return UITableViewCell() }
+    
+    if indexPath.row == 0 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for:  indexPath) as! DescriptionCell
+      cell.recipe = cellData
+      cell.selectionStyle = .none
+      cell.setUpDescriptionCell()
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "IngridientsCell", for:  indexPath) as! IngridientsCell
+      return cell
     }
   }
 }
