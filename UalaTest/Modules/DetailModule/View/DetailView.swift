@@ -61,6 +61,7 @@ class DetailViewController: UIViewController {
     recipeDetailTable.delegate = self
     recipeDetailTable.dataSource = self
     recipeDetailTable.register(DescriptionCell.self, forCellReuseIdentifier: "DescriptionCell")
+    recipeDetailTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
     recipeDetailTable.translatesAutoresizingMaskIntoConstraints = false
     recipeDetailTable.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -70,6 +71,26 @@ class DetailViewController: UIViewController {
     recipeDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     recipeDetailTable.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
     recipeDetailTable.rowHeight = UITableView.automaticDimension
+  }
+  
+  private func returnIngridients(recipe: Meal) -> [String?] {
+    let ingridients: [String?] = [recipe.strIngredient1, recipe.strIngredient2, recipe.strIngredient3, recipe.strIngredient4, recipe.strIngredient5, recipe.strIngredient6, recipe.strIngredient7, recipe.strIngredient8, recipe.strIngredient9, recipe.strIngredient10, recipe.strIngredient11, recipe.strIngredient12, recipe.strIngredient13, recipe.strIngredient14, recipe.strIngredient15, recipe.strIngredient16, recipe.strIngredient17, recipe.strIngredient18, recipe.strIngredient19, recipe.strIngredient20]
+    return ingridients
+  }
+  
+  private func returnMeassures(recipe: Meal) -> [String?] {
+    let meassures: [String?] = [recipe.strMeasure1, recipe.strMeasure2, recipe.strMeasure3, recipe.strMeasure4, recipe.strMeasure5, recipe.strMeasure6, recipe.strMeasure7, recipe.strMeasure8, recipe.strMeasure9, recipe.strMeasure10, recipe.strMeasure11, recipe.strMeasure12, recipe.strMeasure13, recipe.strMeasure14, recipe.strMeasure15, recipe.strMeasure16, recipe.strMeasure17, recipe.strMeasure18, recipe.strMeasure19, recipe.strMeasure2]
+    return meassures
+  }
+  
+  private func returnCellCount(ingridients: [String?]) -> Int {
+    var cellCount: Int = 0
+    for i in 0...19 {
+      if ingridients[i] != "" {
+        cellCount += 1
+      }
+    }
+    return cellCount
   }
 }
 
@@ -94,7 +115,8 @@ extension DetailViewController: DetailViewProtocol {
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    guard let cellData: Meal = recipe else { return 0 }
+    return returnCellCount(ingridients: returnIngridients(recipe: cellData))
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +129,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
       cell.setUpDescriptionCell()
       return cell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "IngridientsCell", for:  indexPath) as! IngridientsCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:  indexPath)
+      cell.selectionStyle = .none
+      guard let meassure = returnMeassures(recipe: cellData)[indexPath.row],
+            let ingridient = returnIngridients(recipe: cellData)[indexPath.row]
+      else { return cell }
+      cell.textLabel?.text = ingridient + " (" + meassure + ")"
       return cell
     }
   }

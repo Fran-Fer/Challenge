@@ -49,8 +49,8 @@ class DescriptionCell: UITableViewCell {
     textView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     textView.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
     textView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    textView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    textView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
+    textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 2).isActive = true
     
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
     descriptionLabel.topAnchor.constraint(equalTo: textView.topAnchor).isActive = true

@@ -33,7 +33,6 @@
 		36EE891628E8C4E3005E98FF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891528E8C4E3005E98FF /* MainViewController.swift */; };
 		36EE891828E8C640005E98FF /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE891728E8C640005E98FF /* MainPresenter.swift */; };
 		36F0433D28EE343900694D0C /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F0433C28EE343900694D0C /* DescriptionCell.swift */; };
-		36F0433F28EE344500694D0C /* IngridientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F0433E28EE344500694D0C /* IngridientsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,6 @@
 		36EE891528E8C4E3005E98FF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		36EE891728E8C640005E98FF /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		36F0433C28EE343900694D0C /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
-		36F0433E28EE344500694D0C /* IngridientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngridientsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				36F0433C28EE343900694D0C /* DescriptionCell.swift */,
-				36F0433E28EE344500694D0C /* IngridientsCell.swift */,
 			);
 			path = DetailCustomCells;
 			sourceTree = "<group>";
@@ -494,7 +491,6 @@
 				36ADB4E328E8C8FB00E01C97 /* MainInteractor.swift in Sources */,
 				36F0433D28EE343900694D0C /* DescriptionCell.swift in Sources */,
 				36EE891428E8C482005E98FF /* MainBuilder.swift in Sources */,
-				36F0433F28EE344500694D0C /* IngridientsCell.swift in Sources */,
 				36ADB4FD28E8DE8D00E01C97 /* DetailView.swift in Sources */,
 				36EE891828E8C640005E98FF /* MainPresenter.swift in Sources */,
 				36ADB4F828E8DD1700E01C97 /* DetailProtocols.swift in Sources */,
