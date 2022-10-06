@@ -11,13 +11,32 @@ import UIKit
 
 class MockMainView: UIViewController {
   var presenter: MainPresenterProtocol?
-  
+  var updatedBanner: Bool = false
+  var reloadedTableView: Bool = false
+  var failToFetchImage: Bool = false
+  var updatedView: Bool = false
+  var displayedError: Bool = false
 }
 
 extension MockMainView: MainViewProtocol {
-  func updateView(withData: Meals) {
+
+  func updateBanner(data: Data) {
+    updatedBanner = true
+  }
+  
+  func reloadTableView() {
+    reloadedTableView = true
+  }
+  
+  func failedToFetchImage() {
+    failToFetchImage = true
+  }
+  
+  func updateView(withData: MealList) {
+    updatedView = true
   }
   
   func displayError() {
+    displayedError = true
   }
 }

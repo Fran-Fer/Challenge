@@ -14,11 +14,19 @@ class MainPresenterTest: XCTestCase {
   override func setUp() {
     super.setUp()
     sut = MockMainPresenter()
+    sut.interactor = MockMainInteractor()
+    sut.router = MockMainRouter()
+    sut.view = MockMainView()
   }
   
   override func tearDown() {
     sut = nil
     super.tearDown()
+  }
+  
+  func test_callParseData_returnSuccess() {
+    sut.fetchParsedData()
+    XCTAssertTrue(sut.calledFetchParsedData)
   }
   
 }
