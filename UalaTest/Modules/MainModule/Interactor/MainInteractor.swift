@@ -52,7 +52,7 @@ class MainInteractor: MainInteractorProtocol {
           self.presenter?.didFetchRandomImage(url: resultUrl)
         }
       case .failure:
-        self.presenter?.failedToFetchData()
+        self.presenter?.failedImage()
         break
       }
     }

@@ -20,15 +20,11 @@ class MainViewController: UIViewController {
   let activiyIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
   
   // MARK: - Main View Life Cycle
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  override func viewDidLoad() {
+    super.viewDidLoad()
     setUpActivityIndicator()
     presenter?.fetchRandom()
     presenter?.fetchParsedData()
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
     setUpSearchBar()
     setUpNavigationBar()
     setUpTableView()
@@ -164,6 +160,15 @@ extension MainViewController: MainViewProtocol {
     alert.addAction(UIAlertAction(title: "Retry", style: UIAlertAction.Style.default, handler: {
       (action: UIAlertAction) in
       self.presenter?.fetchParsedData()
+    }))
+    self.present(alert, animated: true, completion: nil)
+  }
+  
+  func failedToFetchImage() {
+    let alert = UIAlertController(title: "Failed to fetch image", message: "Please try again later", preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Retry", style: UIAlertAction.Style.default, handler: {
+      (action: UIAlertAction) in
+      self.presenter?.fetchRandom()
     }))
     self.present(alert, animated: true, completion: nil)
   }

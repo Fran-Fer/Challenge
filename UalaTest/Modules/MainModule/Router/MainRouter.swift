@@ -29,4 +29,10 @@ class MainRouter: MainRouterProtocol {
       view.displayError()
     }
   }
+  
+  func imageError(view: MainViewProtocol) {
+    DispatchQueue.main.async {
+      view.failedToFetchImage()
+    }
+  }
 }

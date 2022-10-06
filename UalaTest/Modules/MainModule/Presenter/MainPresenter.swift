@@ -60,6 +60,14 @@ class MainPresenter: MainPresenterProtocol {
     }
   }
   
+  func failedImage() {
+    if let view = view {
+      router?.imageError(view: view)
+    } else {
+      preconditionFailure("View could not be assigned")
+    }
+  }
+  
   func sendToDishDetail(with meal: Meal, imageData: Data, view: UINavigationController) {
     router?.presentDishDetail(view: view, meal: meal, imageData: imageData)
   }

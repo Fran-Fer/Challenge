@@ -22,6 +22,7 @@ protocol MainViewProtocol: UIViewController {
   func updateBanner(data: Data)
   func reloadTableView() 
   func displayError()
+  func failedToFetchImage()
 }
 
 // MARK: - Main Interactor Protocol
@@ -48,12 +49,14 @@ protocol MainPresenterProtocol: AnyObject {
   func returnThumbImage(url: URL) -> Data?
   func didFetchRandomImage(url: URL)
   func fetchRandom()
+  func failedImage()
 }
 
 // MARK: - Main Router Protocol
 protocol MainRouterProtocol: AnyObject {
   func presentDishDetail(view: UINavigationController, meal: Meal, imageData: Data)
   func parseError(view: MainViewProtocol)
+  func imageError(view: MainViewProtocol)
   func presentMainModule(in window: UIWindow)
 }
 
